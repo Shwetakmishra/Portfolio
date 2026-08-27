@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { motion, useSpring, animate, type Variants } from "motion/react";
 import { useHasFinePointer } from "@/lib/useHasFinePointer";
 import { useReplayOnReentry } from "@/lib/useReplayOnReentry";
@@ -115,7 +114,7 @@ const SCREEN_LIFE_BY_IMAGE: Record<string, ScreenLifeConfig> = {
 const CARD_REPLAY_AMOUNT = 0.5;
 
 export interface Project {
-  slug: string; // used for the /projects/[slug] case-study link
+  slug: string; // matches the case study's path on shweta.framer.website
   image: string; // filename (no extension) in /public/projects/ — decoupled from slug
   title: string;
   stat: string;
@@ -489,14 +488,16 @@ export default function ProjectCard({
             <p className="mt-6 max-w-md font-body text-base text-ink/80 sm:text-lg">
               {project.description}
             </p>
-            <Link
-              href={`/projects/${project.slug}`}
+            <a
+              href={`https://shweta.framer.website/${project.slug}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group mt-8 inline-flex items-center gap-2 font-body text-sm font-semibold uppercase tracking-wide transition-opacity hover:opacity-75"
               style={{ color: deepAccent }}
             >
               Read more
               <ArrowIcon />
-            </Link>
+            </a>
           </motion.div>
         </div>
       </motion.article>
